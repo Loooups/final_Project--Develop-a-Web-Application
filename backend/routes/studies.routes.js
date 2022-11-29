@@ -5,7 +5,7 @@ const {
   setStudy,
   updateStudy,
   deleteStudy,
-} = require("../controllers/studiesController.js");
+} = require("../controllers/studyController");
 
 router.route("/").get(getStudies).post(setStudy);
 
