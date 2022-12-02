@@ -17,4 +17,6 @@ app.use("/api/patients", require("./routes/patients.routes.js"));
 
 app.use("/api/cras", require("./routes/cras.routes.js"));
 
+app.use("/api/users", require("./routes/user.routes.js"));
+
 app.listen(port, () => console.log("Server started on port " + port));
