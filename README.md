@@ -20,3 +20,7 @@ This application is based on : MongoDB for database Express.JS and Node.Js for s
 ## Author
 
 👤 **f.Moncef**
+
+## Badges
+
+[![MIT License](https://img.shields.io/badge/License-MIT-green.svg)](https://choosealicense.com/licenses/mit/)

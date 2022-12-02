@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 
 const userSchema = mongoose.Schema(
   {
-    username: {
+    name: {
       type: String,
       required: [true, "Please add name"],
     },
@@ -15,8 +15,13 @@ const userSchema = mongoose.Schema(
       type: String,
       required: [true, "Please add a password"],
     },
+
+    profile: {
+      type: String,
+      required: [true, "Please add a profile"],
+    },
   },
   { timesstamps: true }
 );
 
-module.export = mongoose.model(User, userSchema);
+module.exports = mongoose.model("User", userSchema);

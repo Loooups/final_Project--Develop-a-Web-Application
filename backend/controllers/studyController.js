@@ -1,5 +1,5 @@
 const asyncHandler = require("express-async-handler");
-const Study = require("../models/study.model");
+const Study = require("../models/study.model.js");
 
 //@desc Get all studies
 //@route GET /api/studies
