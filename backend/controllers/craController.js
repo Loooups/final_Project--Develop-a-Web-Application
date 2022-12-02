@@ -1,10 +1,12 @@
 const asyncHandler = require("express-async-handler");
 const Cra = require("../models/cra.model.js");
+const User = require("../models/user.model.js");
+
 //@desc Get all physicians
 //@route GET /api/physicians
 //@access Private
 const getCras = asyncHandler(async (req, res) => {
-  const cra = await Cra.find();
+  const cra = await Cra.find({ user: req.user.id });
   res.status(200).json(cra);
 });
 
@@ -15,6 +17,7 @@ const setCra = asyncHandler(async (req, res) => {
   const newCra = await Cra.create({
     name: req.body.name,
     study_name: req.body.study_name,
+    user: req.user.id,
   });
   res.status(200).json(newCra);
 });
@@ -28,6 +31,20 @@ const updateCra = asyncHandler(async (req, res) => {
     res.status(400);
     throw new Error("CRA not found");
   }
+
+  const user = await User.findById(req.user.id);
+
+  //  Check for user
+  if (!user) {
+    res.status(401);
+    throw new Error("User not found");
+  }
+  //  Make sure the logged in user matches the CRA user
+  if (craToUpdate.user.toString() !== user.id) {
+    res.status(401);
+    throw new Error("User not authorized");
+  }
+
   const updatedCra = await Cra.findByIdAndUpdate(req.params.id, req.body, {
     new: true,
   });
@@ -42,6 +59,19 @@ const deleteCra = asyncHandler(async (req, res) => {
   if (!craToDelete) {
     res.status(400);
     throw new Error("CRA not found");
+  }
+
+  const user = await User.findById(req.user.id);
+
+  //  Check for user
+  if (!user) {
+    res.status(401);
+    throw new Error("User not found");
+  }
+  //  Make sure the logged in user matches the CRA user
+  if (craToDelete.user.toString() !== user.id) {
+    res.status(401);
+    throw new Error("User not authorized");
   }
 
   await Cra.deleteOne();

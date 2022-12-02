@@ -1,11 +1,13 @@
 const asyncHandler = require("express-async-handler");
 const Study = require("../models/study.model.js");
+const User = require("../models/user.model.js");
 
 //@desc Get all studies
 //@route GET /api/studies
 //@access Private
 const getStudies = asyncHandler(async (req, res) => {
-  const studies = await Study.find();
+  const studies = await Study.find({ user: req.user.id });
+
   res.status(200).json(studies);
 });
 
@@ -19,8 +21,8 @@ const setStudy = asyncHandler(async (req, res) => {
     drugSubstance: req.body.drugSubstance,
     listOfPatients: req.body.listOfPatients,
     cra: req.body.cra,
+    user: req.user.id,
   });
-
   res.status(200).json(newStudy);
 });
 
@@ -32,6 +34,19 @@ const updateStudy = asyncHandler(async (req, res) => {
   if (!studyToUpdate) {
     res.status(400);
     throw new Error("Study not found");
+  }
+
+  const user = await User.findById(req.user.id);
+
+  //  Check for user
+  if (!user) {
+    res.status(401);
+    throw new Error("User not found");
+  }
+  //  Make sure the logged in user matches the study user
+  if (studyToUpdate.user.toString() !== user.id) {
+    res.status(401);
+    throw new Error("User not authorized");
   }
 
   const updatedStudy = await Study.findByIdAndUpdate(req.params.id, req.body, {
@@ -49,6 +64,19 @@ const deleteStudy = asyncHandler(async (req, res) => {
   if (!studyToDelete) {
     res.status(400);
     throw new Error("Study not found");
+  }
+
+  const user = await User.findById(req.user.id);
+
+  //  Check for user
+  if (!user) {
+    res.status(401);
+    throw new Error("User not found");
+  }
+  //  Make sure the logged in user matches the study user
+  if (studyToDelete.user.toString() !== req.user.id) {
+    res.status(401);
+    throw new Error("User not authorized");
   }
 
   await Study.deleteOne();
