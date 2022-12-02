@@ -1,5 +1,5 @@
 const asyncHandler = require("express-async-handler");
-const Cra = require("../models/cra.model");
+const Cra = require("../models/cra.model.js");
 //@desc Get all physicians
 //@route GET /api/physicians
 //@access Private
