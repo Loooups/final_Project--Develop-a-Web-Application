@@ -6,9 +6,10 @@ const {
   updateCra,
   deleteCra,
 } = require("../controllers/craController");
+const { protect } = require("../middleware/authMiddelware.js");
 
-router.route("/").get(getCras).post(setCra);
+router.route("/").get(protect, getCras).post(protect, setCra);
 
-router.route("/:id").delete(deleteCra).put(updateCra);
+router.route("/:id").delete(protect, deleteCra).put(protect, updateCra);
 
 module.exports = router;
