@@ -14,7 +14,7 @@ This application is based on : MongoDB for database Express.JS and Node.Js for s
 
 - ✅ Create, Read, Update and Delete clinical trials with protected routes,
 - ✅ Create, Read, Update and Delete patients,
-- ✅ Create, Read, Update and Delete loogbook in charge for patient follow-up.
+- ✅ Create, Read logbook in charge for patient follow-up with protected routes.
 - ✅ An authentication system with Json Web Token (open industry standard RFC 7519 method for representing claims securely between two parties [https://jwt.io/].)
 
 ## Author
