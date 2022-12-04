@@ -2,33 +2,23 @@ const mongoose = require("mongoose");
 
 const patientSchema = mongoose.Schema(
   {
-    user: { type: mongoose.Schema.Types.ObjectId, required: true, ref: "User" },
-
     name: {
       type: String,
       required: [true, "Please complete name field"],
     },
-    birth_date: {
-      type: Date,
-      required: [true, "Please complete birth date field"],
+    age: {
+      type: Number,
+      required: [true, "Please complete age field"],
     },
     gender: {
       type: String,
       required: [true, "Please complete gender field"],
     },
-    weight: {
-      type: String,
-      required: [true, "Please complete weight field"],
-    },
-    height: {
-      type: String,
-      required: [true, "Please complete height field"],
-    },
-    blood_group: {
+    bloodGroup: {
       type: String,
       required: [true, "Please complete blood group field"],
     },
-    study_name: {
+    studyName: {
       type: String,
     },
   },

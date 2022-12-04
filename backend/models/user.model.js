@@ -11,14 +11,13 @@ const userSchema = mongoose.Schema(
       required: [true, "Please add email"],
       unique: true,
     },
+    role: {
+      type: String,
+      required: [true, "Please add a role"],
+    },
     password: {
       type: String,
       required: [true, "Please add a password"],
-    },
-
-    profile: {
-      type: String,
-      required: [true, "Please add a profile"],
     },
   },
   { timesstamps: true }
