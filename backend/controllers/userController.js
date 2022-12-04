@@ -7,8 +7,8 @@ const User = require("../models/user.model.js");
 // @route POST /api/users
 // @access Public
 const registerUser = asyncHandler(async (req, res) => {
-  const { name, email, password, profile } = req.body;
-  if (!name || !email || !password || !profile) {
+  const { name, email, role, password } = req.body;
+  if (!name || !email || !role || !password) {
     res.status(400);
     throw new Error("Please add all fields");
   }
@@ -28,8 +28,8 @@ const registerUser = asyncHandler(async (req, res) => {
   const user = await User.create({
     name,
     email,
+    role,
     password: hashedPassword,
-    profile,
   });
 
   if (user) {
@@ -37,7 +37,7 @@ const registerUser = asyncHandler(async (req, res) => {
       _id: user.id,
       name: user.name,
       email: user.email,
-      profile: user.profile,
+      role: user.role,
       token: generateToken(user._id),
     });
   } else {
@@ -60,6 +60,7 @@ const loginUser = asyncHandler(async (req, res) => {
       _id: user.id,
       name: user.name,
       email: user.email,
+      role: user.role,
       token: generateToken(user._id),
     });
   } else {
@@ -77,6 +78,7 @@ const getMyData = asyncHandler(async (req, res) => {
     _id,
     name,
     email,
+    role,
   });
 });
 

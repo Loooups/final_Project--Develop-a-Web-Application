@@ -15,7 +15,7 @@ app.use("/api/studies", require("./routes/studies.routes.js"));
 
 app.use("/api/patients", require("./routes/patients.routes.js"));
 
-app.use("/api/cras", require("./routes/cras.routes.js"));
+app.use("/api/logbooks", require("./routes/logbooks.routes.js"));
 
 app.use("/api/users", require("./routes/user.routes.js"));
 
