@@ -13,7 +13,7 @@ const getLogbooks = asyncHandler(async (req, res) => {
 //@desc add logbook
 //@route POST /api/logbook
 //@access Private
-const setLogbook = asyncHandler(async (req, res) => {
+const createLogbook = asyncHandler(async (req, res) => {
   // Check if logbook patient exists
   const { patientName, date } = req.body;
   const logbookExists = await Logbook.findOne({ patientName, date });
@@ -36,5 +36,5 @@ const setLogbook = asyncHandler(async (req, res) => {
 
 module.exports = {
   getLogbooks,
-  setLogbook,
+  createLogbook,
 };
