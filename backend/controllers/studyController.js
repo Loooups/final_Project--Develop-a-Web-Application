@@ -14,7 +14,7 @@ const getStudies = asyncHandler(async (req, res) => {
 //@desc add study
 //@route POST /api/studies
 //@access Private
-const setStudy = asyncHandler(async (req, res) => {
+const createStudy = asyncHandler(async (req, res) => {
   // Check if study already exists
   const { name } = req.body.name;
   const studyExists = await Study.findOne({ name });
@@ -84,7 +84,7 @@ const deleteStudy = asyncHandler(async (req, res) => {
 
 module.exports = {
   getStudies,
-  setStudy,
+  createStudy,
   updateStudy,
   deleteStudy,
 };

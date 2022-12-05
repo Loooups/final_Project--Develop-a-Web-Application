@@ -13,7 +13,7 @@ const getPatients = asyncHandler(async (req, res) => {
 //@desc add patient
 //@route POST /api/patients
 //@access Private
-const setPatient = asyncHandler(async (req, res) => {
+const createPatient = asyncHandler(async (req, res) => {
   const newPatient = await Patient.create({
     name: req.body.name,
     age: req.body.age,
@@ -59,7 +59,7 @@ const deletePatient = asyncHandler(async (req, res) => {
 
 module.exports = {
   getPatients,
-  setPatient,
+  createPatient,
   updatePatient,
   deletePatient,
 };
