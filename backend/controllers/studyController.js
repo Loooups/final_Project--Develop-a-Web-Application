@@ -24,7 +24,7 @@ const createStudy = asyncHandler(async (req, res) => {
   }
   const userRole = req.user.role;
   // check for user role
-  if (userRole !== "physician") {
+  if (userRole !== "Clinical Trial Manager") {
     res.status(401);
     throw new Error("User not authorized to set a new study");
   }
@@ -49,7 +49,7 @@ const updateStudy = asyncHandler(async (req, res) => {
   }
   const userRole = req.user.role;
   // check for user role
-  if (userRole !== "physician") {
+  if (userRole !== "Clinical Trial Manager") {
     res.status(401);
     throw new Error("User not authorized to update");
   }
