@@ -23,6 +23,9 @@ const studySchema = mongoose.Schema(
       type: String,
       required: [true, "Please complete drug substance field"],
     },
+    image: {
+      type: String,
+    },
   },
   { timestamps: true }
 );
