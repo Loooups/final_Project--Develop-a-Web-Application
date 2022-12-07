@@ -11,7 +11,7 @@ async function run() {
     const db = client.db("Clinicify");
     // insert code goes here
     const salt = await bcrypt.genSalt(10);
-    const hashedPassword = await bcrypt.hash("test123", salt);
+    const hashedPassword = await bcrypt.hash("5hZcJaZlVJaREA7p", salt);
 
     const fakeUsers = [
       {
