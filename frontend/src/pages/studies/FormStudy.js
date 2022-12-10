@@ -1,4 +1,4 @@
-import CreateStudy from "../../components/CTM-components/CreateStudy";
+import CreateStudy from "../../components/studies/CreateStudy";
 
 const FormStudy = (props) => {
   return <CreateStudy />;

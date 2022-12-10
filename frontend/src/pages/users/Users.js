@@ -1,4 +1,4 @@
-import UsersDisplay from "../../components/CTM-components/UsersDisplay";
+import UsersDisplay from "../../components/users/UsersDisplay";
 
 const Users = () => {
   return (

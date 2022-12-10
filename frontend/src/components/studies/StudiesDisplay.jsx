@@ -17,7 +17,7 @@ const StudyDisplay = () => {
   return (
     <div>
       <h4 className="flex justify-center text-2xl font-bold text-gray-900">
-        All Users
+        All Studies
       </h4>
 
       <ul>

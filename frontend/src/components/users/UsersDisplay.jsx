@@ -2,7 +2,7 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 
 const UsersDisplay = () => {
-  const [study, setUser] = useState([]);
+  const [users, setUsers] = useState([]);
 
   useEffect(() => {
     axios.defaults.headers.common[
@@ -10,7 +10,7 @@ const UsersDisplay = () => {
     ] = `Bearer ${localStorage.getItem("access_token")}`;
     axios
       .get("http://localhost:5000/api/users")
-      .then((res) => setUser(res.data));
+      .then((res) => setUsers(res.data));
   }, []);
 
   return (
@@ -27,7 +27,7 @@ const UsersDisplay = () => {
           </tr>
         </thead>
         <tbody>
-          {study.map((user, index) => (
+          {users.map((user, index) => (
             <tr key={user._id} user={user}>
               <td>{user.name}</td>
               <td>{user.email}</td>

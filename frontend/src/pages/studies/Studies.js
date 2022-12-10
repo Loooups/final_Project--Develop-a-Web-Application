@@ -1,4 +1,4 @@
-import StudyDisplay from "../components/StudiesDisplay";
+import StudyDisplay from "../../components/studies/StudiesDisplay";
 
 const Studies = () => {
   return (

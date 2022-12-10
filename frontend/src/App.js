@@ -1,9 +1,9 @@
 import { React, useEffect, useState } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import SignIn from "./pages/SignIn";
-import Studies from "./pages/Studies";
-import Patients from "./pages/Patients";
-import MyDatas from "./pages/MyDatas";
+import SignIn from "./pages/users/SignIn";
+import Studies from "./pages/studies/Studies";
+import Patients from "./pages/patients/Patients";
+import MyDatas from "./pages/users/MyDatas";
 import About from "./pages/About";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
@@ -39,13 +39,13 @@ const App = () => {
         <Route path="/" element={<About setIsLoggedin={setIsLoggedin} />} />
         <Route path="/users" element={<Users />} />
         <Route path="/studies" element={<Studies />} />
-        {/* <Route path="/patients" element={<Patients />} /> */}
+        <Route path="/patients" element={<Patients />} />
         <Route path="/mydatas" element={<MyDatas />} />
         <Route
           path="/signin"
           element={<SignIn setIsLoggedin={setIsLoggedin} />}
         />
-        <Route path="*" element={<SignIn setIsLoggedin={setIsLoggedin} />} />
+        <Route path="*" element={<About setIsLoggedin={setIsLoggedin} />} />
       </Routes>
       <div>
         <Footer />

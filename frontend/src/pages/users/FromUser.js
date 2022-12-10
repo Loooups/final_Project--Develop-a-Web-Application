@@ -1,4 +1,4 @@
-import CreateUser from "../../components/CTM-components/CreateUser";
+import CreateUser from "../../components/users/CreateUser";
 
 const FromUser = () => {
   return <CreateUser />;

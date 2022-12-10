@@ -78,7 +78,9 @@ const CreateUser = () => {
                   required
                   className="relative block w-full appearance-none rounded-none rounded-t-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-teal-500 focus:outline-none focus:ring-teal-500 sm:text-sm"
                 >
-                  <option value="CTM">Clinical Trial Manager</option>
+                  <option value="Clinical Trial Manager">
+                    Clinical Trial Manager
+                  </option>
                   <option value="Investigator">Investigator</option>
                 </select>
               </div>
