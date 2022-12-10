@@ -19,6 +19,10 @@ const studySchema = mongoose.Schema(
       type: Date,
       required: [true, "Please complete end date field"],
     },
+    status: {
+      type: String,
+      required: [true, "Please complete end status field"],
+    },
     drugSubstance: {
       type: String,
       required: [true, "Please complete drug substance field"],

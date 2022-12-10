@@ -1,15 +1,7 @@
-import React from "react";
-import Dashboard from "../components/Dashbord";
-import Footer from "../components/Footer";
-import Register from "../components/Register";
+import { useState } from "react";
 
 export default function Admin() {
-  return (
-    <div>
-      <Dashboard />
-      <Register />
-      <p>Admin</p>
-      <Footer />
-    </div>
-  );
+  const [Enable, setEnable] = useState("courses");
+
+  return <div></div>;
 }

@@ -3,13 +3,23 @@ const bcrypt = require("bcryptjs");
 const asyncHandler = require("express-async-handler");
 const User = require("../models/user.model.js");
 
+// @desc Get all user
+// @route GET /api/users
+// @access Private
+const getUsers = asyncHandler(async (req, res) => {
+  const users = await User.find();
+
+  res.status(200).json(users);
+});
+
 // @desc Register new user
 // @route POST /api/users
-// @access Public
+// @access Private
 const registerUser = asyncHandler(async (req, res) => {
   const { name, email, role, password } = req.body;
   if (!name || !email || !role || !password) {
     res.status(400);
+    console.log(req.body);
     throw new Error("Please add all fields");
   }
 
@@ -48,9 +58,9 @@ const registerUser = asyncHandler(async (req, res) => {
 
 // @desc Authenticate a user
 // @route POST /pai/users/login
-// @access Public
+// @access Private
 const loginUser = asyncHandler(async (req, res) => {
-  const { email, password } = req.body;
+  const { email, password, role } = req.body;
 
   // check for user email
   const user = await User.findOne({ email });
@@ -61,7 +71,7 @@ const loginUser = asyncHandler(async (req, res) => {
       name: user.name,
       email: user.email,
       role: user.role,
-      token: generateToken(user._id),
+      token: generateToken(user._id, user.role),
     });
   } else {
     res.status(401);
@@ -88,4 +98,4 @@ const generateToken = (id) => {
     expiresIn: process.env.JWT_EXPIRE,
   });
 };
-module.exports = { registerUser, loginUser, getMyData };
+module.exports = { getUsers, registerUser, loginUser, getMyData };

@@ -4,16 +4,20 @@ import StudiesCards from "./StudiesCards";
 
 const StudyDisplay = () => {
   const [study, setStudy] = useState([]);
+
   useEffect(() => {
+    axios.defaults.headers.common[
+      "Authorization"
+    ] = `Bearer ${localStorage.getItem("access_token")}`;
     axios
-      .get("http://localhost:5000/api/studies")
+      .get("http://localhost:5000/api/Studies")
       .then((res) => setStudy(res.data));
   }, []);
 
   return (
     <div>
       <h4 className="flex justify-center text-2xl font-bold text-gray-900">
-        Ongoing Clinical Studies
+        All Users
       </h4>
 
       <ul>

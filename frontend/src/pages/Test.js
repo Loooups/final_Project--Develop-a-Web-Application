@@ -1,14 +1,22 @@
-import Footer from "../components/Footer";
-import LoggedHeader from "../components/LoggedHeader";
-import StudyDisplay from "../components/StudiesDisplay";
+import { Routes, Route, useNavigate } from "react-router-dom";
 
 const Test = () => {
+  const navigate = useNavigate();
+
+  const navigateToContacts = () => {
+    // 👇️ navigate to /contacts
+    navigate("/studies");
+  };
+  const navigateHome = () => {
+    // 👇️ navigate to /
+    navigate("/patients");
+  };
+
   return (
     <div>
-      <LoggedHeader />
-      <StudyDisplay />
-      <h1>Studies</h1>
-      <Footer />
+      <button onClick={navigateHome}>test1</button>
+      <hr />
+      <button onClick={navigateToContacts}>test2</button>
     </div>
   );
 };

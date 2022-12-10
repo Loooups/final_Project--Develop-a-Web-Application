@@ -21,7 +21,7 @@ app.use("/api/patients", require("./routes/patients.routes.js"));
 
 app.use("/api/logbooks", require("./routes/logbooks.routes.js"));
 
-app.use("/api/users", require("./routes/user.routes.js"));
+app.use("/api/users", require("./routes/users.routes.js"));
 
 app.use(errorHandler);
 
