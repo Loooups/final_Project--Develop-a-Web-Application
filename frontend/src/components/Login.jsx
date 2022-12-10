@@ -1,12 +1,11 @@
-import Cookies from "universal-cookie";
 import { LockClosedIcon } from "@heroicons/react/20/solid";
 import React, { useState, useRef, useContext, useEffect } from "react";
 import axios from "../api/axios";
 import { useNavigate } from "react-router-dom";
 const LOGIN_URL = "api/users/login";
-const cookies = new Cookies();
+// const [isLoggedin, setIsLoggedin] = useState(false);
 
-const Login = () => {
+const Login = (props) => {
   const emailRef = useRef();
   const passwordRef = useRef();
   const [msg, setMsg] = useState("");
@@ -27,15 +26,15 @@ const Login = () => {
         }
       );
       console.log(JSON.stringify(response?.data));
-      const Token = response?.data?.token;
-      const roles = response?.data?.roles;
-      console.log(Token);
-      console.log(roles);
-
-      // setAuth({ roles, Token });
-
+      const token = response?.data?.token;
+      const role = response?.data?.role;
+      localStorage.setItem("access_token", token);
+      props.setIsLoggedin(true);
+      console.log("tititit tititi ");
       navigate("/admin");
+      console.log("tototot tototo ");
     } catch (error) {
+      console.log("cqtchhhhhhh");
       if (error) {
         setMsg(error);
       }

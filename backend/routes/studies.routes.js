@@ -8,7 +8,7 @@ const {
 } = require("../controllers/studyController");
 const { protect } = require("../middleware/authMiddelware");
 
-router.route("/").get(getStudies).post(protect, createStudy);
+router.route("/").get(protect, getStudies).post(protect, createStudy);
 
 router.route("/:id").delete(protect, deleteStudy).put(protect, updateStudy);
 

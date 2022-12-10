@@ -1,3 +1,4 @@
+const { log } = require("console");
 const asyncHandler = require("express-async-handler");
 const Study = require("../models/study.model.js");
 const User = require("../models/user.model.js");
@@ -33,7 +34,9 @@ const createStudy = asyncHandler(async (req, res) => {
     name: req.body.name,
     startDate: req.body.startDate,
     endDate: req.body.endDate,
+    status: req.body.status,
     drugSubstance: req.body.drugSubstance,
+    image: req.body.image,
   });
   res.status(200).json(newStudy);
 });

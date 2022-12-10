@@ -8,7 +8,7 @@ const {
 } = require("../controllers/patientController");
 const { protect } = require("../middleware/authMiddelware.js");
 
-router.route("/").get(getPatients).post(protect, createPatient);
+router.route("/").get(protect, getPatients).post(protect, createPatient);
 
 router.route("/:id").delete(protect, deletePatient).put(protect, updatePatient);
 

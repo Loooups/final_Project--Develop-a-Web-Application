@@ -3,7 +3,7 @@ import { useState, useRef } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
-const Register = () => {
+const CreateUser = () => {
   const nameRef = useRef();
   const emailRef = useRef();
   const roleRef = useRef();
@@ -20,7 +20,8 @@ const Register = () => {
         role: roleRef.current.value,
         password: passwordRef.current.value,
       });
-      navigate("/*");
+      console.log(roleRef);
+      navigate("/users");
     } catch (error) {
       if (error) {
         setMsg(error);
@@ -70,17 +71,16 @@ const Register = () => {
                 />
               </div>
               <div>
-                <label htmlFor="role" className="sr-only">
-                  Role To Apply
-                </label>
-                <input
+                <select
                   ref={roleRef}
                   id="role"
                   name="role"
                   required
                   className="relative block w-full appearance-none rounded-none rounded-t-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-teal-500 focus:outline-none focus:ring-teal-500 sm:text-sm"
-                  placeholder="Clinical Trial Manager or Investigator ?"
-                />
+                >
+                  <option value="CTM">Clinical Trial Manager</option>
+                  <option value="Investigator">Investigator</option>
+                </select>
               </div>
               <div>
                 <label htmlFor="password" className="sr-only">
@@ -110,7 +110,7 @@ const Register = () => {
                     aria-hidden="true"
                   />
                 </span>
-                Sign up
+                Save
               </button>
             </div>
           </form>
@@ -119,4 +119,4 @@ const Register = () => {
     </>
   );
 };
-export default Register;
+export default CreateUser;

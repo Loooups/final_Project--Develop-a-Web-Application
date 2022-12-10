@@ -1,25 +1,55 @@
-import React from "react";
+import { React, useEffect, useState } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Admin from "./pages/Admin";
 import SignIn from "./pages/SignIn";
 import Studies from "./pages/Studies";
 import Patients from "./pages/Patients";
 import MyDatas from "./pages/MyDatas";
 import About from "./pages/About";
-import Test from "./pages/Test";
+import Header from "./components/Header";
+import Footer from "./components/Footer";
+import FormStudy from "./pages/studies/FormStudy";
+import FormUser from "./pages/users/FromUser";
+import Users from "./pages/users/Users";
 
 const App = () => {
+  const userLogged = localStorage.getItem("access_token");
+  const [isLoggedin, setIsLoggedin] = useState(false);
+
+  useEffect(() => {
+    console.log("user logged" + userLogged);
+    if (userLogged) {
+      setIsLoggedin(true);
+    }
+  }, [userLogged]);
+
   return (
     <BrowserRouter>
+      <div>
+        <Header isLoggedin={isLoggedin} setIsLoggedin={setIsLoggedin} />
+      </div>
       <Routes>
-        <Route path="/test" element={<Test />} />
-        <Route path="/" element={<About />} />
-        <Route path="/admin" element={<Admin />} />
+        <Route
+          path="/formStudy"
+          element={<FormStudy setIsLoggedin={setIsLoggedin} />}
+        />
+        <Route
+          path="/formUser"
+          element={<FormUser setIsLoggedin={setIsLoggedin} />}
+        />
+        <Route path="/" element={<About setIsLoggedin={setIsLoggedin} />} />
+        <Route path="/users" element={<Users />} />
         <Route path="/studies" element={<Studies />} />
-        <Route path="/patients" element={<Patients />} />
+        {/* <Route path="/patients" element={<Patients />} /> */}
         <Route path="/mydatas" element={<MyDatas />} />
-        <Route path="*" element={<SignIn />} />
+        <Route
+          path="/signin"
+          element={<SignIn setIsLoggedin={setIsLoggedin} />}
+        />
+        <Route path="*" element={<SignIn setIsLoggedin={setIsLoggedin} />} />
       </Routes>
+      <div>
+        <Footer />
+      </div>
     </BrowserRouter>
   );
 };

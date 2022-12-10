@@ -7,7 +7,6 @@ function About() {
     <div>
       <ProjectDescription />
       About
-      <Footer />
     </div>
   );
 }
