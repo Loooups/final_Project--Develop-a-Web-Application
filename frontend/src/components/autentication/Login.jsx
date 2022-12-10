@@ -1,6 +1,6 @@
 import { LockClosedIcon } from "@heroicons/react/20/solid";
 import React, { useState, useRef, useContext, useEffect } from "react";
-import axios from "../api/axios";
+import axios from "../../api/axios";
 import { useNavigate } from "react-router-dom";
 const LOGIN_URL = "api/users/login";
 // const [isLoggedin, setIsLoggedin] = useState(false);
@@ -31,7 +31,7 @@ const Login = (props) => {
       localStorage.setItem("access_token", token);
       props.setIsLoggedin(true);
       console.log("tititit tititi ");
-      navigate("/admin");
+      navigate("/");
       console.log("tototot tototo ");
     } catch (error) {
       console.log("cqtchhhhhhh");

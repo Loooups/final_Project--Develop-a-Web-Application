@@ -11,7 +11,7 @@ async function run() {
     const db = client.db("Clinicify");
     // insert code goes here
     const salt = await bcrypt.genSalt(10);
-    const hashedPassword = await bcrypt.hash("5hZcJaZlVJaREA7p", salt);
+    const hashedPassword = await bcrypt.hash("password", salt);
 
     const fakeUsers = [
       {
@@ -75,54 +75,39 @@ async function run() {
         password: hashedPassword,
       },
       {
-        name: "admintest",
-        email: "admintest10@gmail.com",
+        name: "Admin Test",
+        email: "admin@test.com",
         role: "Clinical Trial Manager",
         password: hashedPassword,
       },
     ];
     const fakeStudies = [
       {
-        name: "Levothyroxine Sodium",
-        startDate: {
-          $date: {
-            $numberLong: "1631491200000",
-          },
-        },
-        endDate: {
-          $date: {
-            $numberLong: "1644019200000",
-          },
-        },
+        name: "Levothyroxine",
+        startDate: 2021 - 09 - 13,
+        endDate: 2022 - 02 - 05,
+        status: "Finished",
         drugSubstance: "Metronidazole",
+        image:
+          "https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80",
       },
       {
         name: "Atenolol",
-        startDate: {
-          $date: {
-            $numberLong: "1610236800000",
-          },
-        },
-        endDate: {
-          $date: {
-            $numberLong: "1645660800000",
-          },
-        },
+        startDate: 2021 - 01 - 10,
+        endDate: 2022 - 02 - 24,
+        status: "Stopped",
         drugSubstance: "Droperidol",
+        image:
+          "https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80",
       },
       {
         name: "Citalopram",
-        startDate: {
-          $date: {
-            $numberLong: "1656374400000",
-          },
-        },
-        endDate: {
-          $date: {
-            $numberLong: "1674777600000",
-          },
-        },
+        startDate: 2022 - 06 - 28,
+        endDate: 2023 - 01 - 27,
+        status: "Running",
         drugSubstance: "pegvisomant",
+        image:
+          "https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80",
       },
     ];
 
@@ -272,7 +257,8 @@ async function run() {
       {
         patientName: "Lombard Grebert",
         date: "2021-12-05T12:02:02",
-        studyName: "Levothyroxine Sodium",
+        comments: "Fever",
+        studyName: "Levothyroxine",
         patientWeight: 83,
         patientBloodPressure: 97,
         patientTemperature: 39.8,
@@ -280,7 +266,8 @@ async function run() {
       {
         patientName: "Lombard Grebert",
         date: "2021-12-06T09:15:45",
-        studyName: "Levothyroxine Sodium",
+        comments: "Skin rash",
+        studyName: "Levothyroxine",
         patientWeight: 78,
         patientBloodPressure: 116,
         patientTemperature: 38.8,
@@ -288,7 +275,8 @@ async function run() {
       {
         patientName: "Lombard Grebert",
         date: "2021-12-11T10:18:03",
-        studyName: "Levothyroxine Sodium",
+        comments: "Diarrhea",
+        studyName: "Levothyroxine",
         patientWeight: 79,
         patientBloodPressure: 104,
         patientTemperature: 36.0,
@@ -296,7 +284,8 @@ async function run() {
       {
         patientName: "Lombard Grebert",
         date: "2022-01-20T10:59:47",
-        studyName: "Levothyroxine Sodium",
+        comments: "Chest pain",
+        studyName: "Levothyroxine",
         patientWeight: 89,
         patientBloodPressure: 113,
         patientTemperature: 36.8,
@@ -304,7 +293,8 @@ async function run() {
       {
         patientName: "Lombard Grebert",
         date: "2022-02-02T11:59:24",
-        studyName: "Levothyroxine Sodium",
+        comments: "Headche",
+        studyName: "Levothyroxine",
         patientWeight: 85,
         patientBloodPressure: 117,
         patientTemperature: 38.0,
@@ -312,7 +302,8 @@ async function run() {
       {
         patientName: "Garrard Abramsky",
         date: "2022-04-20T15:32:04",
-        studyName: "Levothyroxine Sodium",
+        comments: "Pimples",
+        studyName: "Levothyroxine",
         patientWeight: 80,
         patientBloodPressure: 110,
         patientTemperature: 36.4,
@@ -320,7 +311,8 @@ async function run() {
       {
         patientName: "Garrard Abramsky",
         date: "2022-04-24T11:06:49",
-        studyName: "Levothyroxine Sodium",
+        comments: "Vertigo",
+        studyName: "Levothyroxine",
         patientWeight: 79,
         patientBloodPressure: 113,
         patientTemperature: 37.8,
@@ -328,7 +320,8 @@ async function run() {
       {
         patientName: "Garrard Abramsky",
         date: "2022-04-30T13:22:50",
-        studyName: "Levothyroxine Sodium",
+        comments: "Stuffy ear",
+        studyName: "Levothyroxine",
         patientWeight: 77,
         patientBloodPressure: 104,
         patientTemperature: 36.1,
@@ -336,7 +329,8 @@ async function run() {
       {
         patientName: "Garrard Abramsky",
         date: "2022-06-01T09:06:06",
-        studyName: "Levothyroxine Sodium",
+        comments: "Headche",
+        studyName: "Levothyroxine",
         patientWeight: 76,
         patientBloodPressure: 79,
         patientTemperature: 36.7,
@@ -344,7 +338,8 @@ async function run() {
       {
         patientName: "Garrard Abramsky",
         date: "2022-08-29T14:48:52",
-        studyName: "Levothyroxine Sodium",
+        comments: "Itchy eyes",
+        studyName: "Levothyroxine",
         patientWeight: 72,
         patientBloodPressure: 79,
         patientTemperature: 38.0,
@@ -352,6 +347,7 @@ async function run() {
       {
         patientName: "Donia Bahike",
         date: "2022-07-05T11:00:31",
+        comments: "Chest pain",
         studyName: "Citalopram",
         patientWeight: 51,
         patientBloodPressure: 89,
@@ -360,6 +356,7 @@ async function run() {
       {
         patientName: "Donia Bahike",
         date: "2022-08-10T10:54:28",
+        comments: "Pimples",
         studyName: "Citalopram",
         patientWeight: 52,
         patientBloodPressure: 93,
@@ -368,6 +365,7 @@ async function run() {
       {
         patientName: "Donia Bahike",
         date: "2022-08-27T09:50:50",
+        comments: "Vertigo",
         studyName: "Citalopram",
         patientWeight: 53,
         patientBloodPressure: 119,
@@ -376,6 +374,7 @@ async function run() {
       {
         patientName: "Donia Bahike",
         date: "2022-09-18T09:56:49",
+        comments: "Fever",
         studyName: "Citalopram",
         patientWeight: 56,
         patientBloodPressure: 93,
@@ -384,6 +383,7 @@ async function run() {
       {
         patientName: "Donia Bahike",
         date: "2022-09-20T13:40:47",
+        comments: "Diarrhea",
         studyName: "Citalopram",
         patientWeight: 53,
         patientBloodPressure: 122,
@@ -392,6 +392,7 @@ async function run() {
       {
         patientName: "Oriana Hakking",
         date: "2022-07-09T12:25:43",
+        comments: "Diarrhea",
         studyName: "Citalopram",
         patientWeight: 69,
         patientBloodPressure: 105,
@@ -400,6 +401,7 @@ async function run() {
       {
         patientName: "Oriana Hakking",
         date: "2022-09-02T14:17:51",
+        comments: "Constipation",
         studyName: "Citalopram",
         patientWeight: 67,
         patientBloodPressure: 111,
@@ -408,6 +410,7 @@ async function run() {
       {
         patientName: "Oriana Hakking",
         date: "2022-09-09T12:44:48",
+        comments: "Headche",
         studyName: "Citalopram",
         patientWeight: 65,
         patientBloodPressure: 114,
@@ -416,6 +419,7 @@ async function run() {
       {
         patientName: "Oriana Hakking",
         date: "2022-11-20T15:06:02",
+        comments: "Itchy eyes",
         studyName: "Citalopram",
         patientWeight: 64,
         patientBloodPressure: 99,
@@ -424,6 +428,7 @@ async function run() {
       {
         patientName: "Oriana Hakking",
         date: "2022-12-12T13:18:12",
+        comments: "Skin rash",
         studyName: "Citalopram",
         patientWeight: 53,
         patientBloodPressure: 122,
