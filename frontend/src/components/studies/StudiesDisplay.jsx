@@ -1,9 +1,10 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-// import StudiesCards from "./StudiesCards";
-let statusStudyDisplay = "";
+
 const StudyDisplay = () => {
   const [study, setStudy] = useState([]);
+
+  // const [studyStatus, setStudyStatus] = useState("");
 
   useEffect(() => {
     axios.defaults.headers.common[
@@ -14,10 +15,12 @@ const StudyDisplay = () => {
       .then((res) => setStudy(res.data));
   }, []);
 
-  //     if (study.status === "Finished") statusStudyDisplay = "bg-slate-400";
-  //     if (study.status === "Stopped") statusStudyDisplay = "bg-red-300";
-  //     if (study.status === "Pending") statusStudyDisplay = "bg-slate-300";
-  //     if (study.status === "Running") statusStudyDisplay = "bg-green-300";
+  const statusDisplay = (study) => {
+    if (study.status === "Finished") return "bg-slate-400";
+    if (study.status === "Stopped") return "bg-red-300";
+    if (study.status === "Scheduled") return "bg-slate-100";
+    if (study.status === "Running") return "bg-green-300";
+  };
 
   return (
     <div>
@@ -37,8 +40,7 @@ const StudyDisplay = () => {
                     alt={"Study" + study.name}
                   />
                 </a>
-                {/* j'amerais le placer ici  dans la div apres rounded-b-lg*/}
-                <div className={"p-6 bg-red-300 rounded-b-lg"}>
+                <div className={`p-6 ${statusDisplay(study)} rounded-b-lg`}>
                   <h5 className="text-2xl font-bold text-gray-900">
                     {study.name}
                   </h5>
