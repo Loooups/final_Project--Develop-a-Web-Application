@@ -84,8 +84,8 @@ async function run() {
     const fakeStudies = [
       {
         name: "Levothyroxine",
-        startDate: 2021 - 09 - 13,
-        endDate: 2022 - 02 - 05,
+        startDate: "2021-09-13",
+        endDate: "2022-02-05",
         status: "Finished",
         drugSubstance: "Metronidazole",
         image:
@@ -93,8 +93,8 @@ async function run() {
       },
       {
         name: "Atenolol",
-        startDate: 2021 - 01 - 10,
-        endDate: 2022 - 02 - 24,
+        startDate: "2021-01-10",
+        endDate: "2022-02-24",
         status: "Stopped",
         drugSubstance: "Droperidol",
         image:
@@ -102,10 +102,19 @@ async function run() {
       },
       {
         name: "Citalopram",
-        startDate: 2022 - 06 - 28,
-        endDate: 2023 - 01 - 27,
+        startDate: "2022-06-28",
+        endDate: "2023-01-27",
         status: "Running",
         drugSubstance: "pegvisomant",
+        image:
+          "https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80",
+      },
+      {
+        name: "Xylocaine",
+        startDate: "2023-02-05",
+        endDate: "2023-03-27",
+        status: "Scheduled",
+        drugSubstance: "Deflex",
         image:
           "https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80",
       },
@@ -435,12 +444,22 @@ async function run() {
         patientTemperature: 35.9,
       },
     ];
+    const clean1 = await db.dropCollection("users");
+    const clean2 = await db.dropCollection("studies");
+    const clean3 = await db.dropCollection("patients");
+    const clean4 = await db.dropCollection("logbooks");
 
     const result = await db.collection("users").insertMany(fakeUsers);
     const result2 = await db.collection("studies").insertMany(fakeStudies);
     const result3 = await db.collection("patients").insertMany(fakePatients);
     const result4 = await db.collection("logbooks").insertMany(fakelogbooks);
+
     // display the results of your operation
+    console.log("collection users deleted");
+    console.log("collection studies deleted");
+    console.log("collection patients deleted");
+    console.log("collection logbooks deleted");
+
     console.log(result.insertedIds);
     console.log(result2.insertedIds);
     console.log(result3.insertedIds);

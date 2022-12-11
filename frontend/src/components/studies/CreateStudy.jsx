@@ -104,10 +104,10 @@ const CreateStudy = () => {
                   required
                   className="relative block w-full appearance-none rounded-none rounded-t-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-teal-500 focus:outline-none focus:ring-teal-500 sm:text-sm"
                 >
-                  <option value="pending">Pending</option>
-                  <option value="running">Running</option>
-                  <option value="finished">Finished</option>
-                  <option value="stopped">Stopped</option>
+                  <option value="Pending">Pending</option>
+                  <option value="Running">Running</option>
+                  <option value="Finished">Finished</option>
+                  <option value="Stopped">Stopped</option>
                 </select>
               </div>
               <div className="-space-y-px rounded-md shadow-sm">

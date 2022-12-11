@@ -1,6 +1,5 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-import PatientsCards from "./PatientsCards";
 
 const PatientsDisplay = () => {
   const [patients, setPatients] = useState([]);
@@ -8,7 +7,7 @@ const PatientsDisplay = () => {
 
   const [rangeValue, setRangeValue] = useState(36);
   const [selectedFilter, setFilter] = useState("");
-  const filterInfos = ["Male", "Female"];
+  const filterInfos = ["Male", "Female", ""];
 
   useEffect(() => {
     axios.defaults.headers.common[
@@ -45,37 +44,63 @@ const PatientsDisplay = () => {
 
   return (
     <div>
-      <h4 className="flex justify-center text-2xl font-bold text-gray-900">
-        Patient List
-      </h4>
-      <ul>
-        {filterInfos.map((info, index) => (
-          <li key={index}>
+      <div>
+        <h4 className="flex justify-center text-2xl font-bold text-gray-900">
+          Patient List
+        </h4>
+        <div className="flex justify-center">
+          <ul>
+            {filterInfos.map((info, index) => (
+              <li key={index}>
+                <input
+                  type="radio"
+                  id={info}
+                  name="filterInfos"
+                  checked={selectedFilter === info}
+                  value={info}
+                  onChange={onChangeGender}
+                />
+                <label htmlFor={info}>{info}</label>
+              </li>
+            ))}
             <input
-              type="radio"
-              id={info}
-              name="filterInfos"
-              checked={selectedFilter === info}
-              value={info}
-              onChange={onChangeGender}
+              type="range"
+              min="1"
+              max="20"
+              value={rangeValue}
+              onChange={(e) => setRangeValue(e.target.value)}
             />
-            <label htmlFor={info}>{info}</label>
-          </li>
-        ))}
-        <input
-          type="range"
-          min="1"
-          max="50"
-          value={rangeValue}
-          onChange={(e) => setRangeValue(e.target.value)}
-        />
-      </ul>
-
-      <ul>
-        {patientsSorted.map((patient) => (
-          <PatientsCards key={patient._id} patient={patient} />
-        ))}
-      </ul>
+          </ul>
+        </div>
+        <div>
+          <ul className="text-center">
+            {patientsSorted.map((patient, index) => (
+              <div key={index} className="inline-block pr-3 pb-3 w-80 h-30">
+                <div className="rounded-lg shadow-lg bg-white max-w-sm">
+                  <a href="#!">
+                    <div className="p-6 bg-gray-300 ">
+                      <h3 className="text-1xl font-bold text-gray-900">
+                        {patient.name}
+                      </h3>
+                      <p className="p-2 text-sm text-gray-500">
+                        Name : {patient.name}
+                        <br />
+                        Age : {patient.age}
+                        <br />
+                        Gender : {patient.gender}
+                        <br />
+                        Blood Group : {patient.bloodGroup}
+                        <br />
+                        Study Name : {patient.studyName}
+                      </p>
+                    </div>
+                  </a>
+                </div>
+              </div>
+            ))}
+          </ul>
+        </div>
+      </div>
     </div>
   );
 };
