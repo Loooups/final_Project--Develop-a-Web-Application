@@ -2,9 +2,7 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 
 const StudyDisplay = () => {
-  const [study, setStudy] = useState([]);
-
-  // const [studyStatus, setStudyStatus] = useState("");
+  const [studies, setStudies] = useState([]);
 
   useEffect(() => {
     axios.defaults.headers.common[
@@ -12,14 +10,14 @@ const StudyDisplay = () => {
     ] = `Bearer ${localStorage.getItem("access_token")}`;
     axios
       .get("http://localhost:5000/api/Studies")
-      .then((res) => setStudy(res.data));
+      .then((res) => setStudies(res.data));
   }, []);
 
-  const statusDisplay = (study) => {
-    if (study.status === "Finished") return "bg-slate-400";
-    if (study.status === "Stopped") return "bg-red-300";
-    if (study.status === "Scheduled") return "bg-slate-100";
-    if (study.status === "Running") return "bg-green-300";
+  const statusDisplay = (studies) => {
+    if (studies.status === "Finished") return "bg-slate-400";
+    if (studies.status === "Stopped") return "bg-red-300";
+    if (studies.status === "Scheduled") return "bg-slate-100";
+    if (studies.status === "Running") return "bg-green-300";
   };
 
   return (
@@ -30,7 +28,7 @@ const StudyDisplay = () => {
 
       <div className="flex min-h-full items-center bg-white justify-center py-12 px-4 sm:px-6 lg:px-8">
         <ul>
-          {study.map((study, index) => (
+          {studies.map((study, index) => (
             <div key={index} className="inline-block pr-3 pb-3">
               <div className="rounded-lg shadow-lg bg-white max-w-sm">
                 <a href="#!">
