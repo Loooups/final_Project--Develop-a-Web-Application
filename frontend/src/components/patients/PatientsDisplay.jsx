@@ -78,11 +78,11 @@ const PatientsDisplay = () => {
               <div key={index} className="inline-block pr-3 pb-3 w-80 h-30">
                 <div className="rounded-lg shadow-lg bg-white max-w-sm">
                   <a href="#!">
-                    <div className="p-6 bg-gray-300 ">
+                    <div className="p-6 bg-teal-600 ">
                       <h3 className="text-1xl font-bold text-gray-900">
                         {patient.name}
                       </h3>
-                      <p className="p-2 text-sm text-gray-500">
+                      <p className="p-2 text-sm text-white">
                         Name : {patient.name}
                         <br />
                         Age : {patient.age}
