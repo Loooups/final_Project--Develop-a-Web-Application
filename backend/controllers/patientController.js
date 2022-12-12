@@ -21,7 +21,7 @@ const createPatient = asyncHandler(async (req, res) => {
     bloodGroup: req.body.bloodGroup,
     studyName: req.body.studyName,
   });
-  res.status(200).json(newPatient);
+  res.status(201).json(newPatient);
 });
 
 // @desc update patient
@@ -30,7 +30,7 @@ const createPatient = asyncHandler(async (req, res) => {
 const updatePatient = asyncHandler(async (req, res) => {
   const patientToUpdate = await Patient.findById(req.params.id);
   if (!patientToUpdate) {
-    res.status(400);
+    res.status(404);
     throw new Error("Patient not found");
   }
 
@@ -39,7 +39,7 @@ const updatePatient = asyncHandler(async (req, res) => {
     req.body,
     { new: true }
   );
-  res.status(200).json(updatedPatient);
+  res.status(201).json(updatedPatient);
 });
 
 // @desc delete patient
@@ -48,13 +48,13 @@ const updatePatient = asyncHandler(async (req, res) => {
 const deletePatient = asyncHandler(async (req, res) => {
   const patientToDelete = await Patient.findById(req.params.id);
   if (!patientToDelete) {
-    res.status(400);
+    res.status(404);
     throw new Error("Patient not found");
   }
 
   await Patient.deleteOne();
 
-  res.status(200).json({ id: req.params.id });
+  res.status(201).json({ id: req.params.id });
 });
 
 module.exports = {

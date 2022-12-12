@@ -82,7 +82,7 @@ const PatientsDisplay = () => {
                       <h3 className="text-1xl font-bold text-gray-900">
                         {patient.name}
                       </h3>
-                      <p className="p-2 text-sm text-white">
+                      <p className="p-2 text-sm text-gray-600">
                         Name : {patient.name}
                         <br />
                         Age : {patient.age}

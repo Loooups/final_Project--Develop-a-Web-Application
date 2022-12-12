@@ -86,6 +86,7 @@ export default function Header(props) {
                 {({ open }) => (
                   <>
                     <Popover.Button
+                      id="popover-admin"
                       className={classNames(
                         open ? "text-gray-900" : "text-gray-500",
                         "group inline-flex items-center rounded-md bg-white text-base font-medium hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-teal-500 focus:ring-offset-2"
@@ -151,6 +152,11 @@ export default function Header(props) {
               <Link to="/users">
                 <div className="text-base font-medium text-gray-500 hover:text-gray-900">
                   All Users
+                </div>
+              </Link>
+              <Link to="/patients">
+                <div className="text-base font-medium text-gray-500 hover:text-gray-900">
+                  Patients
                 </div>
               </Link>
               <Popover className="relative">
