@@ -6,5 +6,6 @@ describe("N1.Login Test", () => {
     cy.get("#password").type("password");
     cy.get('[data-cy="submit"]').click();
     cy.contains("Sign out");
+    cy.get(".ml-8").click();
   });
 });

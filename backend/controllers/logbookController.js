@@ -18,7 +18,7 @@ const createLogbook = asyncHandler(async (req, res) => {
   const { patientName, date } = req.body;
   const logbookExists = await Logbook.findOne({ patientName, date });
   if (logbookExists) {
-    res.status(400);
+    res.status(409);
     throw new Error("Comments already exists");
   }
 

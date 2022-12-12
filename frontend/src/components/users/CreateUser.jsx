@@ -8,23 +8,25 @@ const CreateUser = () => {
   const emailRef = useRef();
   const roleRef = useRef();
   const passwordRef = useRef();
-  const [msg, setMsg] = useState("");
   const navigate = useNavigate();
 
   const onSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.post("http://localhost:5000/api/users", {
+      axios.defaults.headers.common[
+        "Authorization"
+      ] = `Bearer ${localStorage.getItem("access_token")}`;
+      let response = await axios.post("http://localhost:5000/api/users", {
         name: nameRef.current.value,
         email: emailRef.current.value,
         role: roleRef.current.value,
         password: passwordRef.current.value,
       });
-      console.log(roleRef);
+      console.log(response);
       navigate("/users");
     } catch (error) {
       if (error) {
-        setMsg(error);
+        console.log(error);
       }
     }
   };
@@ -98,7 +100,6 @@ const CreateUser = () => {
                   className="relative block w-full appearance-none rounded-none rounded-b-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-teal-500 focus:outline-none focus:ring-teal-500 sm:text-sm"
                   placeholder="Password"
                 />
-                <p>{msg}</p>
               </div>
             </div>
             <div>

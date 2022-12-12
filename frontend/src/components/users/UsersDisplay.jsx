@@ -10,14 +10,15 @@ const UsersDisplay = () => {
     ] = `Bearer ${localStorage.getItem("access_token")}`;
     axios
       .get("http://localhost:5000/api/users")
-      .then((res) => setUsers(res.data));
+      .then((res) => setUsers(res.data))
+      .catch((err) => console.log(err));
   }, []);
 
   return (
     <div>
-      <h4 className="flex justify-center text-2xl font-bold text-gray-900">
+      <h3 className="mt-6 text-center text-3xl font-bold tracking-tight text-gray-900">
         All Users
-      </h4>
+      </h3>
       <div className="flex rounded-lg bg-white min-h-full items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
         <table class="table-primary rounded-lg bg-slate-300">
           <thead>
@@ -34,7 +35,7 @@ const UsersDisplay = () => {
             </tr>
           </thead>
           <tbody className="text-center  bg-teal-100 rounded-lg">
-            {users.map((user, index) => (
+            {users.map((user) => (
               <tr key={user._id} user={user}>
                 <td className="border-2 rounded-lg text-justify">
                   {user.name}

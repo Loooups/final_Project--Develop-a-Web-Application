@@ -20,7 +20,7 @@ const createStudy = asyncHandler(async (req, res) => {
   const { name } = req.body.name;
   const studyExists = await Study.findOne({ name });
   if (studyExists) {
-    res.status(400);
+    res.status(409);
     throw new Error("Study already exists");
   }
   const userRole = req.user.role;
@@ -38,7 +38,7 @@ const createStudy = asyncHandler(async (req, res) => {
     drugSubstance: req.body.drugSubstance,
     image: req.body.image,
   });
-  res.status(200).json(newStudy);
+  res.status(201).json(newStudy);
 });
 
 // @desc update study
@@ -47,7 +47,7 @@ const createStudy = asyncHandler(async (req, res) => {
 const updateStudy = asyncHandler(async (req, res) => {
   const studyToUpdate = await Study.findById(req.params.id);
   if (!studyToUpdate) {
-    res.status(400);
+    res.status(404);
     throw new Error("Study not found");
   }
   const userRole = req.user.role;
@@ -61,7 +61,7 @@ const updateStudy = asyncHandler(async (req, res) => {
     new: true,
   });
 
-  res.status(200).json(updatedStudy);
+  res.status(201).json(updatedStudy);
 });
 
 // @desc delete study
@@ -70,19 +70,19 @@ const updateStudy = asyncHandler(async (req, res) => {
 const deleteStudy = asyncHandler(async (req, res) => {
   const studyToDelete = await Study.findById(req.params.id);
   if (!studyToDelete) {
-    res.status(400);
+    res.status(404);
     throw new Error("Study not found");
   }
   const userRole = req.user.role;
   // check for user role
-  if (userRole !== "physician") {
+  if (userRole !== "Clinical Trial Manager") {
     res.status(401);
     throw new Error("User not authorized to delete this study");
   }
 
   await Study.deleteOne();
 
-  res.status(200).json({ id: req.params.id });
+  res.status(201).json({ id: req.params.id });
 });
 
 module.exports = {
