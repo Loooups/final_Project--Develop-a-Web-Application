@@ -31,7 +31,10 @@ jobs:
     
     - name: Install NPM packages
       run: npm ci
-    
+
+    - name: Seed database
+      run: npm run seed
+
     - name: Build project
       run: npm start
 
