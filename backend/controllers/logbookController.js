@@ -34,7 +34,28 @@ const createLogbook = asyncHandler(async (req, res) => {
   res.status(200).json(newLogbook);
 });
 
+//@desc add logbook
+//@route POST /api/logbook
+//@access Private
+
+const getLogbookByPatient = asyncHandler(async (req, res) => {
+  const logbookToDisplay = await Logbook.find({
+    patientName: req.params.patientName,
+  });
+  if (!logbookToDisplay) {
+    res.status(404);
+    throw new Error("Logbook not found");
+  }
+  res.status(200).json(logbookToDisplay);
+  // const userRole = req.user.role;
+  // // check for user role
+  // if (userRole !== "Clinical Trial Manager") {
+  //   res.status(401);
+  //   throw new Error("User not authorized to delete this study");
+});
+
 module.exports = {
   getLogbooks,
   createLogbook,
+  getLogbookByPatient,
 };

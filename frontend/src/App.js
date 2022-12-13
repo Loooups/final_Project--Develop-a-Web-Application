@@ -10,6 +10,7 @@ import Footer from "./components/Footer";
 import FormStudy from "./pages/studies/FormStudy";
 import FormUser from "./pages/users/FromUser";
 import Users from "./pages/users/Users";
+import Logbooks from "./pages/logbooks/Logbooks";
 
 const App = () => {
   const userLogged = localStorage.getItem("access_token");
@@ -40,6 +41,7 @@ const App = () => {
         <Route path="/users" element={<Users />} />
         <Route path="/studies" element={<Studies />} />
         <Route path="/patients" element={<Patients />} />
+        <Route path="/logbooks" element={<Logbooks />} />
         <Route path="/mydatas" element={<MyDatas />} />
         <Route
           path="/signin"
