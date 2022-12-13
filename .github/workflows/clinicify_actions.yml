@@ -52,12 +52,11 @@ jobs:
       with:
         node-version: ${{ matrix.node-version }}
     - run: npm ci
-    - run: run lint
+      env:
+        CI: false
     - run: npm run build --if present
     - run: npm install -g serve
     - run: serve -s build
-      env:
-        CI: false
     - name: run cypress tests with chrome
       uses: cypress-io/github-action@v2
       with:
