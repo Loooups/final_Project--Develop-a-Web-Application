@@ -24,7 +24,7 @@ const CreateStudy = () => {
       axios.defaults.headers.common[
         "Authorization"
       ] = `Bearer ${localStorage.getItem("access_token")}`;
-      let response = await axios.post("http://127.0.0.1:5000/api/studies", {
+      let response = await axios.post("http://localhost:5000/api/studies", {
         name: nameRef.current.value,
         startDate: startRef.current.value,
         endDate: endRef.current.value,

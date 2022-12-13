@@ -16,7 +16,7 @@ const CreateUser = () => {
       axios.defaults.headers.common[
         "Authorization"
       ] = `Bearer ${localStorage.getItem("access_token")}`;
-      let response = await axios.post("http://127.0.0.1:5000/api/users", {
+      let response = await axios.post("http://localhost:5000/api/users", {
         name: nameRef.current.value,
         email: emailRef.current.value,
         role: roleRef.current.value,
