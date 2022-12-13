@@ -52,8 +52,10 @@ jobs:
       with:
         node-version: ${{ matrix.node-version }}
     - run: npm ci
-    - run: npm run build
-    - name: run cypress tests with firefox
+    - run: npm run build --if present
+      env:
+        CI: false
+    - name: run cypress tests with chrome
       uses: cypress-io/github-action@v2
       timeout-minutes: 10
       with:
