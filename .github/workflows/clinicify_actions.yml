@@ -57,6 +57,5 @@ jobs:
         CI: false
     - name: run cypress tests with chrome
       uses: cypress-io/github-action@v2
-      timeout-minutes: 10
       with:
           browser: chrome
