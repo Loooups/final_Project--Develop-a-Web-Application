@@ -12,7 +12,7 @@ const LogbookDisplay = () => {
       "Authorization"
     ] = `Bearer ${localStorage.getItem("access_token")}`;
     axios
-      .get("http://127.0.0.1:5000/api/logbooks/logbook/Lombard Grebert")
+      .get("http://localhost:5000/api/logbooks/logbook/Lombard Grebert")
       .then((res) => {
         setLogbooks(res.data);
         console.log(res.data);
