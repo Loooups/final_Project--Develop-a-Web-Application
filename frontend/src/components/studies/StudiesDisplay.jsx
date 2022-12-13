@@ -1,5 +1,4 @@
-import axios from "axios";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 const StudyDisplay = () => {
   const [studies, setStudies] = useState([]);
