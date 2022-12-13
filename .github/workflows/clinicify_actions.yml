@@ -30,7 +30,7 @@ jobs:
         node-version: 16.x
     
     - name: Install NPM packages
-      run: npm ci &&
+      run: npm ci
 
     - name: Seed database
       run: npm run seed &&
@@ -54,7 +54,9 @@ jobs:
       uses: actions/setup-node@v1
       with:
         node-version: ${{ matrix.node-version }}
-    - run: npm ci &&
+    - run: npm ci
+    - name: Build project
+      run: npm start &&
       env:
         CI: false
     - name: run cypress tests with chrome 
