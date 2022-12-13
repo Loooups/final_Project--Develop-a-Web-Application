@@ -32,10 +32,6 @@ jobs:
     - name: Install NPM packages
       run: npm ci
     
-
-    - name: Install NPM packages
-      run: npm ci
-    
     - name: Build project
       run: npm start
 
@@ -56,5 +52,5 @@ jobs:
       with:
         node-version: ${{ matrix.node-version }}
     - run: npm ci
-    - run: npm run build --if-present
+    - run: npm run build
 
