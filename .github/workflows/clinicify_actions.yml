@@ -54,10 +54,13 @@ jobs:
     - run: npm ci
       env:
         CI: false
-    - run: npm run build --if present
-    - run: npm install -g serve
-    - run: serve -s build
     - name: run cypress tests with chrome
       uses: cypress-io/github-action@v2
       with:
           browser: chrome
+
+
+    # - run: npm run build --if present
+    # - run: npm install -g serve
+    # - run: serve -s build
+
