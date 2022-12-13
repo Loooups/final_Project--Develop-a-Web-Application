@@ -13,7 +13,7 @@ const PatientsDisplay = () => {
     axios.defaults.headers.common[
       "Authorization"
     ] = `Bearer ${localStorage.getItem("access_token")}`;
-    axios.get("http://localhost:5000/api/patients").then((res) => {
+    axios.get("http://127.0.0.1:5000/api/patients").then((res) => {
       setPatients(res.data);
       //sort patients by name
       let sortedPatients = res.data

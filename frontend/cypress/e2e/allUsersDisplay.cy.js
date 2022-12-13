@@ -1,6 +1,6 @@
 describe("N3.Display all Users", () => {
   it("passes", () => {
-    cy.visit("http://localhost:3000/");
+    cy.visit("http://127.0.0.1:3000/");
     cy.get(".ml-8").click();
     cy.get("#email-address").type("admin@test.com");
     cy.get("#password").type("password");
