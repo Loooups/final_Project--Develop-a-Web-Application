@@ -1,7 +1,17 @@
-import { useState } from "react";
+import axios from "axios";
+import { useEffect, useState } from "react";
 
 const StudyDisplay = () => {
   const [studies, setStudies] = useState([]);
+
+  useEffect(() => {
+    axios.defaults.headers.common[
+      "Authorization"
+    ] = `Bearer ${localStorage.getItem("access_token")}`;
+    axios
+      .get("http://localhost:5000/api/Studies")
+      .then((res) => setStudies(res.data));
+  }, []);
 
   const statusDisplay = (studies) => {
     if (studies.status === "Finished") return "bg-slate-400";

@@ -21,21 +21,46 @@ jobs:
         working-directory: backend
     
     steps:
-    - uses: actions/checkout@v2
+    - name: Checkout code
+      uses: actions/checkout@v2
+    
     - name: Install Node.js
       uses: actions/setup-node@v1
       with:
         node-version: 16.x
     
-    - run: |
-        npm ci
-        npm run seed
-        npm start 
-        cd ..
-        cd frontend
-        npm ci
-        npm sart
-        npx cypress run --record --key ${{secrets.KEY}}
+    - name: Install NPM packages
+      run: npm ci
+
+    - name: Seed database
+      run: npm run seed
+
+    - name: Build project
+      run: npm start
+
+  build2:
+    name: Start Web client
+    runs-on: ubuntu-latest
+    defaults: 
+      run: 
+        working-directory: frontend
+    strategy:
+      matrix:
+        node-version: [ 12.x, 14.x]
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v1
+      with:
+        node-version: ${{ matrix.node-version }}
+    - run: npm ci
+    - name: Build project
+      run: npm start
+      env:
+        CI: false
+    - name: run cypress tests with chrome 
+      run:  npx cypress run --record --key ${{secrets.KEY}}
 
 
     # - run: npm run build --if present
