@@ -8,9 +8,9 @@ on:
 env:
   NODE_ENV : ${{NODE_ENV}}
   PORT : ${{PORT}}
-  MONGO_URI : ${{MONGO_URI}}
-  JWT_SECRET : ${{JWT_SECRET}}
-  JWT_EXPIRE : ${{JWT_EXPIRE}}
+  MONGO_URI : ${{secrets.MONGO_URI}}
+  JWT_SECRET : ${{secrets.JWT_SECRET}}
+  JWT_EXPIRE : ${{secrets.JWT_EXPIRE}}
 
 jobs:
   build:
