@@ -55,9 +55,7 @@ jobs:
       env:
         CI: false
     - name: run cypress tests with chrome
-      uses: cypress-io/github-action@v2
-      with:
-          browser: chrome
+      run:  npm test
 
 
     # - run: npm run build --if present
