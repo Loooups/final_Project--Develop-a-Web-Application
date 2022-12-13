@@ -61,11 +61,11 @@ jobs:
         CI: false
 
   build3:
-    name: Start Server
+    name: Start Cypress
     runs-on: ubuntu-latest
     defaults: 
       run: 
-        working-directory: backend
+        working-directory: frontend
     
     steps:
     - name: Checkout code
