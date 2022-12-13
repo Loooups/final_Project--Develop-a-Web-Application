@@ -58,14 +58,10 @@ jobs:
     - name: Build project
       run: |
         npm start
-        npm test
       env:
         CI: false
-
-
-
-    # - name: run cypress tests with chrome 
-    #   run:  npx cypress run --record --key ${{secrets.KEY}}
+    - name: run cypress tests with chrome 
+      run:  npx cypress run --record --key ${{secrets.KEY}}
 
 
     # - run: npm run build --if present
