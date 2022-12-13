@@ -68,9 +68,6 @@ jobs:
     defaults: 
       run: 
         working-directory: frontend
-    strategy:
-      matrix:
-        node-version: [14.x]
     steps:
     - name: run cypress tests with chrome 
       run:  npx cypress run --record --key ${{secrets.KEY}}
