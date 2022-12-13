@@ -46,7 +46,7 @@ jobs:
         working-directory: frontend
     strategy:
       matrix:
-        node-version: [ 12.x, 14.x]
+        node-version: [14.x]
 
     steps:
     - uses: actions/checkout@v2
@@ -59,8 +59,22 @@ jobs:
       run: npm start
       env:
         CI: false
-    - name: run cypress tests with chrome 
-      run:  npx cypress run --record --key ${{secrets.KEY}}
+  cypress-run:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      # Install NPM dependencies, cache them correctly
+      # and run all Cypress tests
+      - name: Cypress run
+        uses: cypress-io/github-action@v4.x.x # use the explicit version number
+        with:
+          start: npm start
+
+
+
+    # - name: run cypress tests with chrome 
+    #   run:  npx cypress run --record --key ${{secrets.KEY}}
 
 
     # - run: npm run build --if present
