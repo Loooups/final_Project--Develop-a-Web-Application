@@ -21,7 +21,9 @@ jobs:
         node-version: 16.x
     
     - name: Install NPM packages
-      run: npm ci
+      run: 
+        cd backend
+        npm ci
     
 
     - name: Install NPM packages
