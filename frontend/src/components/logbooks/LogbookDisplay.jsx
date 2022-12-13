@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { Line } from "react-chartjs-2";
+import { Link } from "react-router-dom";
 import Chart from "chart.js/auto";
 
 const LogbookDisplay = () => {
@@ -57,7 +58,7 @@ const LogbookDisplay = () => {
     plugins: {
       title: {
         display: true,
-        text: "Lombard Grebert",
+        text: "Patient Name",
       },
     },
     scales: {
@@ -82,6 +83,11 @@ const LogbookDisplay = () => {
   return (
     <div style={{ width: 800 }}>
       <Line labels={labels} data={data} options={options} />
+      <div className="flex justify-center text-2xl font-bold text-gray-900">
+        <Link to="/patients">
+          <button>Back</button>
+        </Link>
+      </div>
     </div>
   );
 };
