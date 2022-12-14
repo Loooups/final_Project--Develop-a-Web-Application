@@ -4,7 +4,6 @@ function About() {
   return (
     <div>
       <ProjectDescription />
-      About
     </div>
   );
 }

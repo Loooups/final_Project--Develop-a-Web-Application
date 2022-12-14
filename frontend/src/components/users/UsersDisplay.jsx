@@ -20,7 +20,7 @@ const UsersDisplay = () => {
         All Users
       </h3>
       <div className="flex rounded-lg bg-white min-h-full items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
-        <table class="table-primary rounded-lg bg-slate-300">
+        <table className="table-primary rounded-lg bg-slate-300">
           <thead>
             <tr>
               <th className=" border-l border py-4 px-3 text-lg bg-teal-600 font-semibold text-black lg:py-3 lg:px-4">

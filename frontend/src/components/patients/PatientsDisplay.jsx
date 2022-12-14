@@ -1,13 +1,14 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
+import { Navigate } from "react-router-dom";
 
-const PatientsDisplay = () => {
+const PatientsDisplay = (props) => {
   const [patients, setPatients] = useState([]);
   const [patientsSorted, setPatientsSorted] = useState([]);
 
   const [rangeValue, setRangeValue] = useState(36);
   const [selectedFilter, setFilter] = useState("");
-  const filterInfos = ["Male", "Female", ""];
+  const filterInfos = ["", "Male", "Female"];
 
   useEffect(() => {
     axios.defaults.headers.common[
@@ -48,21 +49,28 @@ const PatientsDisplay = () => {
         <h4 className="flex justify-center text-2xl font-bold text-gray-900">
           Patient List
         </h4>
-        <div className="flex justify-center">
-          <ul>
-            {filterInfos.map((info, index) => (
-              <li key={index}>
-                <input
-                  type="radio"
-                  id={info}
-                  name="filterInfos"
-                  checked={selectedFilter === info}
-                  value={info}
-                  onChange={onChangeGender}
-                />
-                <label htmlFor={info}>{info}</label>
-              </li>
-            ))}
+        <div className="grid place-items-center pt-6 pb-8">
+          <div className="block align-middle">
+            <label className="">Sort </label>
+            <select
+              onChange={onChangeGender}
+              id={"genderSlected"}
+              name="filterInfos"
+              required
+              className=""
+            >
+              {filterInfos.map((info, index) => (
+                <option key={index} value={info}>
+                  {info}
+                </option>
+              ))}
+            </select>
+          </div>
+          <div className="block align-middle">
+            <label className="pr-3 pb-3">
+              <br />
+              Choose a number of patients to display{" "}
+            </label>
             <input
               type="range"
               min="1"
@@ -70,7 +78,7 @@ const PatientsDisplay = () => {
               value={rangeValue}
               onChange={(e) => setRangeValue(e.target.value)}
             />
-          </ul>
+          </div>
         </div>
         <div>
           <ul className="text-center">
@@ -82,7 +90,7 @@ const PatientsDisplay = () => {
                       <h3 className="text-1xl font-bold text-gray-900">
                         {patient.name}
                       </h3>
-                      <p className="p-2 text-sm text-gray-600">
+                      <p className="p-2 text-sm text-gray-100">
                         Name : {patient.name}
                         <br />
                         Age : {patient.age}

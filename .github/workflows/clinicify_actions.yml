@@ -46,7 +46,7 @@ jobs:
         working-directory: frontend
     strategy:
       matrix:
-        node-version: [14.x]
+        node-version: [ 12.x, 14.x]
 
     steps:
     - uses: actions/checkout@v2
@@ -56,28 +56,13 @@ jobs:
         node-version: ${{ matrix.node-version }}
     - run: npm ci
     - name: Build project
-      run: |
-        npm start
+      run: npm start
       env:
         CI: false
-        wait-on: 'http://localhost:3000
-
-  build3:
-    name: Start Web client
-    runs-on: ubuntu-latest
-    defaults: 
-      run: 
-        working-directory: frontend
-    steps:
-    - name: run cypress tests  
-      run:  npm test
-
-
-
-      # npx cypress run --record --key ${{secrets.KEY}}
+    - name: run cypress tests with chrome 
+      run:  npx cypress run --record --key ${{secrets.KEY}}
 
 
     # - run: npm run build --if present
     # - run: npm install -g serve
     # - run: serve -s build
-
