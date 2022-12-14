@@ -16,8 +16,14 @@ const getStudies = asyncHandler(async (req, res) => {
 //@route POST /api/studies
 //@access Private
 const createStudy = asyncHandler(async (req, res) => {
+  const { name, startDate, endDate, status, drugSubstance } = req.body;
+  if (!name || !startDate || !endDate || !status || !drugSubstance) {
+    res.status(400);
+    console.log(req.body);
+    throw new Error("Please add all fields");
+  }
+
   // Check if study already exists
-  const { name } = req.body.name;
   const studyExists = await Study.findOne({ name });
   if (studyExists) {
     res.status(409);
