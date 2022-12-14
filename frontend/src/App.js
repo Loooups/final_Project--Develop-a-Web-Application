@@ -1,5 +1,5 @@
 import { React, useEffect, useState } from "react";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import SignIn from "./pages/users/SignIn";
 import Studies from "./pages/studies/Studies";
 import Patients from "./pages/patients/Patients";
@@ -13,15 +13,17 @@ import Users from "./pages/users/Users";
 import Logbooks from "./pages/logbooks/Logbooks";
 
 const App = () => {
-  const userLogged = localStorage.getItem("access_token");
-  const [isLoggedin, setIsLoggedin] = useState(false);
+  const [isLoggedin, setIsLoggedin] = useState(
+    () => localStorage.getItem("access_token") !== null
+  );
 
-  useEffect(() => {
-    console.log("user logged" + userLogged);
-    if (userLogged) {
-      setIsLoggedin(true);
-    }
-  }, [userLogged]);
+  // useEffect(() => {
+  //   const userLogged = ;
+  //   if (userLogged) {
+  //     setIsLoggedin(true);
+  //     console.log("user logged" + userLogged);
+  //   }
+  // }, []);
 
   return (
     <BrowserRouter>
@@ -30,24 +32,36 @@ const App = () => {
       </div>
       <Routes>
         <Route
-          path="/formStudy"
-          element={<FormStudy setIsLoggedin={setIsLoggedin} />}
-        />
-        <Route
-          path="/formUser"
-          element={<FormUser setIsLoggedin={setIsLoggedin} />}
-        />
-        <Route path="/" element={<About setIsLoggedin={setIsLoggedin} />} />
-        <Route path="/users" element={<Users />} />
-        <Route path="/studies" element={<Studies />} />
-        <Route path="/patients" element={<Patients />} />
-        <Route path="/logbooks" element={<Logbooks />} />
-        <Route path="/mydatas" element={<MyDatas />} />
-        <Route
           path="/signin"
           element={<SignIn setIsLoggedin={setIsLoggedin} />}
         />
-        <Route path="*" element={<About setIsLoggedin={setIsLoggedin} />} />
+        <Route
+          path="/formStudy"
+          element={isLoggedin ? <FormStudy /> : <Navigate to="/signin" />}
+        />
+        <Route
+          path="/formUser"
+          element={isLoggedin ? <FormUser /> : <Navigate to="/signin" />}
+        />
+        <Route path="/" element={<About />} />
+        <Route
+          path="/users"
+          element={isLoggedin ? <Users /> : <Navigate to="/signin" />}
+        />
+        <Route
+          path="/studies"
+          element={isLoggedin ? <Studies /> : <Navigate to="/signin" />}
+        />
+        <Route
+          path="/patients"
+          element={isLoggedin ? <Patients /> : <Navigate to="/signin" />}
+        />
+        <Route
+          path="/logbooks"
+          element={isLoggedin ? <Logbooks /> : <Navigate to="/signin" />}
+        />
+        <Route path="/mydatas" element={<MyDatas />} />
+        <Route path="*" element={<About />} />
       </Routes>
       <div>
         <Footer />

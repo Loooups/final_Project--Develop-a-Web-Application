@@ -8,7 +8,6 @@ const LOGIN_URL = "api/users/login";
 const Login = (props) => {
   const emailRef = useRef();
   const passwordRef = useRef();
-  const [msg, setMsg] = useState("");
   const navigate = useNavigate();
 
   const Authenticate = async (e) => {
@@ -25,18 +24,15 @@ const Login = (props) => {
           withCredentials: true,
         }
       );
-      console.log(JSON.stringify(response?.data));
+      // console.log(JSON.stringify(response?.data));
       const token = response?.data?.token;
       // const role = response?.data?.role;
       localStorage.setItem("access_token", token);
       props.setIsLoggedin(true);
-      console.log("tititit tititi ");
       navigate("/");
-      console.log("tototot tototo ");
     } catch (error) {
-      console.log("cqtchhhhhhh");
       if (error) {
-        setMsg(error);
+        console.log(error);
       }
     }
   };
@@ -87,7 +83,6 @@ const Login = (props) => {
                   className="relative block w-full appearance-none rounded-none rounded-b-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-teal-500 focus:outline-none focus:ring-teal-500 sm:text-sm"
                   placeholder="Password"
                 />
-                <p>{msg}</p>
               </div>
             </div>
             <div>

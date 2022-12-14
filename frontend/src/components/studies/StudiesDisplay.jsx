@@ -10,7 +10,10 @@ const StudyDisplay = () => {
     ] = `Bearer ${localStorage.getItem("access_token")}`;
     axios
       .get("http://localhost:5000/api/Studies")
-      .then((res) => setStudies(res.data));
+      .then((res) => setStudies(res.data))
+      .catch((error) => {
+        console.log(error.response.status);
+      });
   }, []);
 
   const statusDisplay = (studies) => {
@@ -26,19 +29,19 @@ const StudyDisplay = () => {
         All Studies
       </h3>
 
-      <div className="flex min-h-full items-center bg-white justify-center py-12 px-4 sm:px-6 lg:px-8">
+      <div className="flex justify-center items-center bg-white py-12 px-4 sm:px-8 lg:px-8">
         <ul>
           {studies.map((study, index) => (
             <div key={index} className="inline-block pr-3 pb-3">
               <div className="rounded-lg shadow-lg bg-white max-w-sm">
                 <a href="#!">
                   <img
-                    className="rounded-t-lg"
+                    className="rounded-t-lg h-48 w-86"
                     src={study.image}
                     alt={"Study" + study.name}
                   />
                 </a>
-                <div className={`p-6 ${statusDisplay(study)} rounded-b-lg`}>
+                <div className={`p-4 ${statusDisplay(study)} rounded-b-lg`}>
                   <h5 className="text-2xl font-bold text-gray-900">
                     {study.name}
                   </h5>

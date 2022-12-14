@@ -143,15 +143,14 @@ export default function Header(props) {
                   </>
                 )}
               </Popover>
-
               <Link to="/studies">
                 <div className="text-base font-medium text-gray-500 hover:text-gray-900">
-                  All Studies
+                  Studies
                 </div>
               </Link>
               <Link to="/users">
                 <div className="text-base font-medium text-gray-500 hover:text-gray-900">
-                  All Users
+                  Users
                 </div>
               </Link>
               <Link to="/patients">
@@ -257,13 +256,15 @@ export default function Header(props) {
             <div className="divide-y-2 divide-gray-50 rounded-lg bg-white shadow-lg ring-1 ring-black ring-opacity-5">
               <div className="px-5 pt-5 pb-6">
                 <div className="flex items-center justify-between">
-                  <div>
-                    <img
-                      className="h-8 w-auto"
-                      src="https://tailwindui.com/img/logos/mark.svg?color=teal&shade=600"
-                      alt="Your Company"
-                    />
-                  </div>
+                  <NavLink to="/">
+                    <div>
+                      <img
+                        className="h-8 w-auto"
+                        src={ClinicifyLogo}
+                        alt="Clinicify logo"
+                      />
+                    </div>
+                  </NavLink>
                   <div className="-mr-2">
                     <Popover.Button className="inline-flex items-center justify-center rounded-md bg-white p-2 text-gray-400 hover:bg-gray-100 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-teal-500">
                       <span className="sr-only">Close menu</span>
@@ -295,13 +296,18 @@ export default function Header(props) {
                 <div className="grid grid-cols-2 gap-y-4 gap-x-8">
                   <Link to="/studies">
                     <div className="text-base font-medium text-gray-900 hover:text-gray-700">
-                      All Studies
+                      Studies
                     </div>
                   </Link>
 
                   <Link to="/users">
                     <div className="text-base font-medium text-gray-900 hover:text-gray-700">
-                      All Users
+                      Users
+                    </div>
+                  </Link>
+                  <Link to="/patiens">
+                    <div className="text-base font-medium text-gray-900 hover:text-gray-700">
+                      Patients
                     </div>
                   </Link>
                   {resources.map((item) => (

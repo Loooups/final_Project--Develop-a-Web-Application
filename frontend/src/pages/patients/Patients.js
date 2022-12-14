@@ -1,7 +1,7 @@
 import PatientsDisplay from "../../components/patients/PatientsDisplay";
 
-const Patients = () => {
-  return <div>{<PatientsDisplay />}</div>;
+const Patients = (props) => {
+  return <div>{<PatientsDisplay setIsLoggedin={props.setIsLoggedin} />}</div>;
 };
 
 export default Patients;

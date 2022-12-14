@@ -3,7 +3,7 @@ import { useRef } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
-const CreateStudy = () => {
+const CreateStudy = (props) => {
   const nameRef = useRef();
   const startRef = useRef();
   const endRef = useRef();

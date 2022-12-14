@@ -19,7 +19,7 @@ describe("N2.Add new study", () => {
     cy.get('[data-cy="submit"]').click();
     cy.wait(500);
     cy.get('[href="/studies"] > .text-base').click();
-    cy.get(".min-h-full").contains("poulet@test.com");
+    cy.get(":nth-child(5) > .rounded-lg > .p-4").contains("poulet@test.com");
     cy.get(".ml-8").click();
   });
 });
