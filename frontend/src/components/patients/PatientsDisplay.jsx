@@ -40,7 +40,6 @@ const PatientsDisplay = (props) => {
   };
   const onChangeGender = (e) => {
     setFilter(e.target.value);
-    console.log(e.target.value);
   };
 
   return (
@@ -86,7 +85,7 @@ const PatientsDisplay = (props) => {
               <div key={index} className="inline-block pr-3 pb-3 w-80 h-30">
                 <div className="rounded-lg shadow-lg bg-white max-w-sm">
                   <a href="/logbooks">
-                    <div className="p-6 bg-teal-600 ">
+                    <div className="p-0 bg-teal-600 ">
                       <h3 className="text-1xl font-bold text-gray-900">
                         {patient.name}
                       </h3>

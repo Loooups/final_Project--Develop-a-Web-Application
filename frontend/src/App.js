@@ -60,7 +60,10 @@ const App = () => {
           path="/logbooks"
           element={isLoggedin ? <Logbooks /> : <Navigate to="/signin" />}
         />
-        <Route path="/mydatas" element={<MyDatas />} />
+        <Route
+          path="/mydatas"
+          element={isLoggedin ? <MyDatas /> : <Navigate to="/signin" />}
+        />
         <Route path="*" element={<About />} />
       </Routes>
       <div>

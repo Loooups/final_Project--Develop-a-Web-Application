@@ -17,7 +17,7 @@ const StudyDisplay = () => {
   }, []);
 
   const statusDisplay = (studies) => {
-    if (studies.status === "Finished") return "bg-slate-400";
+    if (studies.status === "Finished") return "bg-slate-300";
     if (studies.status === "Stopped") return "bg-red-300";
     if (studies.status === "Scheduled") return "bg-slate-100";
     if (studies.status === "Running") return "bg-green-300";
@@ -29,23 +29,23 @@ const StudyDisplay = () => {
         All Studies
       </h3>
 
-      <div className="flex justify-center items-center bg-white py-12 px-4 sm:px-8 lg:px-8">
-        <ul>
+      <div className="inline-table justify-center items-center bg-white py-10 px-4 sm:px-8 lg:px-12 ">
+        <ul className="ml-12 inline-table content-center pl-12">
           {studies.map((study, index) => (
             <div key={index} className="inline-block pr-3 pb-3">
               <div className="rounded-lg shadow-lg bg-white max-w-sm">
                 <a href="#!">
                   <img
-                    className="rounded-t-lg h-48 w-86"
+                    className="rounded-t-lg h-48 w-46"
                     src={study.image}
                     alt={"Study" + study.name}
                   />
                 </a>
                 <div className={`p-4 ${statusDisplay(study)} rounded-b-lg`}>
-                  <h5 className="text-2xl font-bold text-gray-900">
+                  <h5 className="text-base font-bold text-gray-900">
                     {study.name}
                   </h5>
-                  <div className="text-sm text-gray-500">
+                  <div className="text-xs text-gray-500">
                     Started on {study.startDate} <br />
                     Until {study.endDate} <br />
                     Status {study.status}

@@ -1,9 +1,9 @@
-import React from "react";
+import UserDisplay from "../../components/users/UserDisplay";
 
 const MyDatas = () => {
   return (
     <div>
-      <h1>My Datas displayed</h1>
+      <UserDisplay />
     </div>
   );
 };

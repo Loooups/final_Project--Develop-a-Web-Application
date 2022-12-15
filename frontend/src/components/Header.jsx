@@ -30,13 +30,13 @@ const resources = [
   {
     name: "Your Profile",
     description: "Get all of Informations.",
-    href: "/getmydatas",
+    href: "/mydatas",
     icon: ShieldCheckIcon,
   },
   {
     name: "Update Profile",
-    description: "Update your informations.",
-    href: "/updatemydatas",
+    description: "Comming soon.",
+    href: "#",
     icon: BookmarkSquareIcon,
   },
 ];

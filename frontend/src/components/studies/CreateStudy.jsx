@@ -14,13 +14,8 @@ const CreateStudy = (props) => {
 
   const onSubmit = async (e) => {
     e.preventDefault();
-    console.log(
-      nameRef.current.value,
-      startRef.current.value,
-      endRef.current.value
-    );
+
     try {
-      console.log("poulet");
       axios.defaults.headers.common[
         "Authorization"
       ] = `Bearer ${localStorage.getItem("access_token")}`;

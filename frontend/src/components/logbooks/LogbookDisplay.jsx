@@ -18,7 +18,6 @@ const LogbookDisplay = () => {
         console.log(res.data);
       });
   }, []);
-  console.log(logbooks);
   const labels = logbooks.map((logbook) => logbook.date);
 
   const data = {
