@@ -9,15 +9,13 @@ export default function ProjectDescription() {
           <div>
             <div>
               <h1 className="text-4xl font-bold tracking-tight sm:text-center sm:text-6xl">
-                {/* This application is my graduation project Upskilling Software
-                Developers.  */}
-                CLINICIFY allows the monitoring of a clinical study.
+                CLINICIFY Clinical Study Monitoring Application.
               </h1>
-              <p className="mt-6 text-lg leading-8 text-gray-600 sm:text-center">
+              <p className="mt-6 text-lg font-bold leading-8 sm:text-center">
                 {/* The application is called Clinicify it a */}
                 Welcome visitors into the workplace with an experience that
                 doesn’t compromise the health, security, or compliance
-                objectives of your company.
+                objectives.
               </p>
               <div className="mt-8 flex gap-x-4 sm:justify-center">
                 <NavLink
